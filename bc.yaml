@@ -1,0 +1,46 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  labels:
+    app: myflaskapp-old
+    app.kubernetes.io/component: myflaskapp-old
+    app.kubernetes.io/instance: myflaskapp-old
+  name: myflaskapp-old
+  namespace: myproject
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: {}
+  output:
+    to:
+      kind: ImageStreamTag
+      name: myflaskapp-old:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/gitsridhar/myflaskapp-old.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: python:latest
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: U_MXukJGd-eyuZRYmQO5
+    type: GitHub
+  - generic:
+      secret: _jjPspXXi2tITav-mlAP
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/python@sha256:17ce78cdf9aeedbe5ad5758b2bbcfb358f48695ed34596f2fa733a490374dbed
+    type: ImageChange
+status:
+  lastVersion: 1
