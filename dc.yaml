@@ -31,6 +31,10 @@ spec:
       labels:
         deploymentconfig: myflaskapp-old
     spec:
+      volumes:
+        - name: my-new-storage-claim
+          persistentVolumeClaim:
+            claimName: my-new-storage-claim
       containers:
       - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:0e8fd8cef05889231347861f00c0ec814dd471e9e195a5e36451f7fca559e314
         imagePullPolicy: Always
