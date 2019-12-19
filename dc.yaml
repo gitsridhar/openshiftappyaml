@@ -1,0 +1,60 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  labels:
+    app: myflaskapp-old
+    app.kubernetes.io/component: myflaskapp-old
+    app.kubernetes.io/instance: myflaskapp-old
+  name: myflaskapp-old
+  namespace: myproject
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentconfig: myflaskapp-old
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        deploymentconfig: myflaskapp-old
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:0e8fd8cef05889231347861f00c0ec814dd471e9e195a5e36451f7fca559e314
+        imagePullPolicy: Always
+        name: myflaskapp-old
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - myflaskapp-old
+      from:
+        kind: ImageStreamTag
+        name: myflaskapp-old:latest
+        namespace: myproject
+    type: ImageChange
