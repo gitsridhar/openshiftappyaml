@@ -26,7 +26,7 @@ Verify storage /mnt/pv-data/sridhar
 
 ssh -i ~/.crc/machines/crc/id_rsa core@192.168.64.11
 cd /mnt
-sudo ls -la /pvdata/sridhar
+sudo ls -la /pv-data/sridhar
 
 oc rsh myflaskapp-old-1-hp8nv (replace app pod name) to get access to pod and verify /new-sridhar directory.
 
