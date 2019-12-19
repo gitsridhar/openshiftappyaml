@@ -6,6 +6,8 @@ oc project myproject
 
 oc apply -f is.yaml
 
+oc apply -f bc.yaml
+
 oc get pods ---> wait for build pod to be completed.
 
 oc logs myflaskapp-old-2-build   ---> to view build logs progress until push successful.Note image registry url (from Successfully pushed image-registry......... line in the log output.
