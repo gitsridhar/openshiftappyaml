@@ -1,0 +1,28 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: myflaskapp-old
+    app.kubernetes.io/component: myflaskapp-old
+    app.kubernetes.io/instance: myflaskapp-old
+  name: myflaskapp-old
+  namespace: myproject
+spec:
+  host: myflaskapp-old-myproject.apps-crc.testing
+  port:
+    targetPort: 8080-tcp
+  subdomain: ""
+  to:
+    kind: Service
+    name: myflaskapp-old
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    host: myflaskapp-old-a1test.apps-crc.testing
+    routerCanonicalHostname: apps-crc.testing
+    routerName: default
+    wildcardPolicy: None
