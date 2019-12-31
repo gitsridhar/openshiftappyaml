@@ -18,6 +18,10 @@ oc apply -f pv.yaml
 
 oc apply -f pvc.yaml
 
+oc apply -f secret.yaml
+
+oc apply -f cm.yaml
+
 oc apply -f dc.yaml
 
 oc get pods ---> wait for deploy pod to be completed. Wait for app pod to be running.
