@@ -18,6 +18,10 @@ oc apply -f pv.yaml
 
 oc apply -f pvc.yaml
 
+oc apply -f secret.yaml
+
+oc apply -f cm.yaml
+
 oc apply -f dc.yaml
 
 oc get pods ---> wait for deploy pod to be completed. Wait for app pod to be running.
@@ -29,4 +33,18 @@ cd /mnt
 sudo ls -la /pv-data/sridhar
 
 oc rsh myflaskapp-old-1-hp8nv (replace app pod name) to get access to pod and verify /new-sridhar directory.
+
+And also check this inside pod:
+(app-root) sh-4.2$ printenv | grep "OS_"
+OS_PROJECT_NAME=project
+OS_DOMAIN_NAME=domain
+OS_AUTH_URL=https://127.0.0.1:8000
+OS_CACERT_DATA=certdata
+OS_CACERT=/etc/config/openstack.crt
+(app-root) sh-4.2$ 
+(app-root) sh-4.2$ echo $username
+user-name
+(app-root) sh-4.2$ echo $password
+password
+(app-root) sh-4.2$ 
 
