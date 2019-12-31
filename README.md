@@ -68,3 +68,22 @@ password
 
 (app-root) sh-4.2$ 
 
+
+(app-root) sh-4.2$ base64 <<< user-name
+
+dXNlci1uYW1lCg==
+
+(app-root) sh-4.2$ base64 <<< password
+
+cGFzc3dvcmQK
+
+(app-root) sh-4.2$ base64 -d <<< "dXNlci1uYW1lCg=="
+
+user-name
+
+(app-root) sh-4.2$ base64 -d <<< "cGFzc3dvcmQK"
+
+password
+
+(base64 -d for linux. base64 -D for MAC !!)
+
