@@ -20,6 +20,14 @@ oc apply -f pvc.yaml
 
 oc apply -f secret.yaml
 
+note: secret.yaml has encoded data. These were encoding using base64. 
+
+$base64 <<< <data in plaintext>
+<encoded data is returned>
+  
+$base64 -D <<< <data in encoded format>
+<plaintext data is returned>
+
 oc apply -f cm.yaml
 
 oc apply -f dc.yaml
