@@ -48,3 +48,17 @@ user-name
 password
 (app-root) sh-4.2$ 
 
+Also check /etc/config directory
+
+(app-root) sh-4.2$ cd /etc/config/
+(app-root) sh-4.2$ ls -la
+total 0
+drwxrwsrwx. 3 root 1000540000 80 Dec 30 05:35 .
+drwxr-xr-x. 1 root root       20 Dec 30 05:35 ..
+drwxr-sr-x. 2 root 1000540000 27 Dec 30 05:35 ..2019_12_30_05_35_03.256121216
+lrwxrwxrwx. 1 root root       31 Dec 30 05:35 ..data -> ..2019_12_30_05_35_03.256121216
+lrwxrwxrwx. 1 root root       20 Dec 30 05:35 openstack.crt -> ..data/openstack.crt
+(app-root) sh-4.2$ cat openstack.crt 
+certdata(app-root) sh-4.2$ 
+(app-root) sh-4.2$ 
+

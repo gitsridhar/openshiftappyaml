@@ -35,8 +35,14 @@ spec:
         - name: my-new-storage-claim
           persistentVolumeClaim:
             claimName: my-new-storage-claim
+        - name: my-app-config
+          configMap:
+            name: my-config
+            items:
+            - key: OS_CACERT_DATA
+              path: openstack.crt
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:27fb3f77123c339f01e9e419c214448b1d08d72f053e06d446d5323e0e0b19bf
+      - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:ae20a246b94a1a4e2abb2c4bc7b12e2eb80d645edccbc53819b518905f953c9f
         imagePullPolicy: Always
         name: myflaskapp-old
         ports:
@@ -54,6 +60,8 @@ spec:
         volumeMounts:
           - name: my-new-storage-claim
             mountPath: /new-sridhar
+          - name: my-app-config
+            mountPath: /etc/config 
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
