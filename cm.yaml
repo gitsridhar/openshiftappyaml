@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+  namespace: myproject
+data:
+  OS_AUTH_URL: "https://127.0.0.1:8000"
+  OS_DOMAIN_NAME: domain
+  OS_PROJECT_NAME: project
+  OS_CACERT_DATA: "certdata"
+  

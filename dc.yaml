@@ -36,13 +36,21 @@ spec:
           persistentVolumeClaim:
             claimName: my-new-storage-claim
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:97d629b13f366fb0538f2129d946014e32c9649cf4c1ddd42398984f345fe68a
+      - image: image-registry.openshift-image-registry.svc:5000/myproject/myflaskapp-old@sha256:27fb3f77123c339f01e9e419c214448b1d08d72f053e06d446d5323e0e0b19bf
         imagePullPolicy: Always
         name: myflaskapp-old
         ports:
         - containerPort: 8080
           protocol: TCP
         resources: {}
+        envFrom:
+          - configMapRef:
+              name: my-config
+          - secretRef:
+              name: my-secret
+        env:
+          - name: OS_CACERT
+            value: /etc/config/openstack.crt
         volumeMounts:
           - name: my-new-storage-claim
             mountPath: /new-sridhar
